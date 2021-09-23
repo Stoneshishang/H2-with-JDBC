@@ -2,8 +2,6 @@ package com.example.h2jdbc.model;
 
 import lombok.*;
 
-import javax.persistence.*;
-
 @Getter
 @Setter
 @ToString

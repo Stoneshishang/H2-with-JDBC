@@ -3,9 +3,7 @@ package com.example.h2jdbc.repository;
 import com.example.h2jdbc.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -16,6 +14,9 @@ public class EmployeeRepository {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    private final String GET_ALL = "SELECT * FROM employees";
+    private final String INSERT_EMPLOYEE = "INSERT INTO employees (FIRST_NAME, LAST_NAME,ADDRESS) VALUES (?, ?, ?)";
 
     private RowMapper<Employee> rowMapper=(ResultSet rs, int rowNum ) ->{
         Employee emp = new Employee();
@@ -32,6 +33,10 @@ public class EmployeeRepository {
 
     public List<Employee> findAll() {
 
-        return jdbcTemplate.query("SELECT * FROM employees", rowMapper);
+        return jdbcTemplate.query(GET_ALL, rowMapper);
+    }
+
+    public boolean addEmployee(Employee e){
+        return jdbcTemplate.update(INSERT_EMPLOYEE, e.getFirstName(), e.getLastName(), e.getAddress()) > 0;
     }
 }
