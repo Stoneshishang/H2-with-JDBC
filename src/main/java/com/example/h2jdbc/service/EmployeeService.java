@@ -30,4 +30,11 @@ public class EmployeeService {
         else response = "Failed to update, Please try again.";
         return response;
     }
+
+    public String deleteEmployee(int id) {
+        String response;
+        if(employeeRepository.deleteEmployee(id)) response = "Successfully Deleted";
+        else response = "Failed to delete, Please try again.";
+        return response;
+    }
 }

@@ -15,9 +15,12 @@ public class EmployeeRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    NamedParameterJdbcTemplate
+
     private final String GET_ALL = "SELECT * FROM employees";
     private final String INSERT_EMPLOYEE = "INSERT INTO employees (FIRST_NAME, LAST_NAME,ADDRESS) VALUES (?, ?, ?)";
     private final String UPDATE_EMPLOYEE = "UPDATE employees set FIRST_NAME = ?, LAST_NAME = ?, ADDRESS = ? WHERE id = ?";
+    private final String DELETE_EMPLOYEE = "DELETE employees WHERE id = ?";
 
     private RowMapper<Employee> rowMapper=(ResultSet rs, int rowNum ) ->{
         Employee emp = new Employee();
@@ -43,5 +46,9 @@ public class EmployeeRepository {
 
     public boolean updateEmployee(Employee e) {
         return jdbcTemplate.update(UPDATE_EMPLOYEE, e.getFirstName(), e.getLastName(), e.getAddress(), e.getId()) > 0;
+    }
+
+    public boolean deleteEmployee(int id) {
+        return jdbcTemplate.update(DELETE_EMPLOYEE, id) > 0;
     }
 }
