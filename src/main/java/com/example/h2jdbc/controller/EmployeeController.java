@@ -1,6 +1,6 @@
 package com.example.h2jdbc.controller;
 
-//import com.example.h2jdbc.model.Employee;
+import com.example.h2jdbc.model.Employee;
 import com.example.h2jdbc.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +13,11 @@ import java.util.List;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-//    @Autowired
-//    EmployeeService employeeService;
-//
-//    @GetMapping("/")
-//    public List<Employee> getAll(){
-//        return employeeService.getAll();
-//    }
+    @Autowired
+    EmployeeService employeeService;
+
+    @GetMapping("/")
+    public List<Employee> getAll(){
+        return employeeService.getAll();
+    }
 }
