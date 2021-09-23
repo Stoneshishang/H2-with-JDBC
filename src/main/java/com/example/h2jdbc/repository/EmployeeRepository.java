@@ -2,6 +2,7 @@ package com.example.h2jdbc.repository;
 
 import com.example.h2jdbc.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -15,12 +16,17 @@ public class EmployeeRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    NamedParameterJdbcTemplate
+    @Value("${app.sql.GET_ALL}")
+    private String GET_ALL;
 
-    private final String GET_ALL = "SELECT * FROM employees";
-    private final String INSERT_EMPLOYEE = "INSERT INTO employees (FIRST_NAME, LAST_NAME,ADDRESS) VALUES (?, ?, ?)";
-    private final String UPDATE_EMPLOYEE = "UPDATE employees set FIRST_NAME = ?, LAST_NAME = ?, ADDRESS = ? WHERE id = ?";
-    private final String DELETE_EMPLOYEE = "DELETE employees WHERE id = ?";
+    @Value("${app.sql.INSERT_EMPLOYEE}")
+    private String INSERT_EMPLOYEE;
+
+    @Value("${app.sql.UPDATE_EMPLOYEE}")
+    private String UPDATE_EMPLOYEE;
+
+    @Value("${app.sql.DELETE_EMPLOYEE}")
+    private String DELETE_EMPLOYEE;
 
     private RowMapper<Employee> rowMapper=(ResultSet rs, int rowNum ) ->{
         Employee emp = new Employee();
