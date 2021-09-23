@@ -23,4 +23,11 @@ public class EmployeeService {
         else response = "Failed to add, Please try again.";
         return response;
     }
+
+    public String updateEmployee(Employee emp) {
+        String response;
+        if(employeeRepository.updateEmployee(emp)) response = "Successfully Updated";
+        else response = "Failed to update, Please try again.";
+        return response;
+    }
 }

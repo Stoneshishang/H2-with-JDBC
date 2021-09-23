@@ -23,4 +23,9 @@ public class EmployeeController {
     public String addEmployee(@RequestBody Employee emp){
         return employeeService.addEmploy(emp);
     }
+
+    @PutMapping("/")
+    public String updateEmployee(@RequestBody Employee emp){
+        return employeeService.updateEmployee(emp);
+    }
 }

@@ -17,6 +17,7 @@ public class EmployeeRepository {
 
     private final String GET_ALL = "SELECT * FROM employees";
     private final String INSERT_EMPLOYEE = "INSERT INTO employees (FIRST_NAME, LAST_NAME,ADDRESS) VALUES (?, ?, ?)";
+    private final String UPDATE_EMPLOYEE = "UPDATE employees set FIRST_NAME = ?, LAST_NAME = ?, ADDRESS = ? WHERE id = ?";
 
     private RowMapper<Employee> rowMapper=(ResultSet rs, int rowNum ) ->{
         Employee emp = new Employee();
@@ -38,5 +39,9 @@ public class EmployeeRepository {
 
     public boolean addEmployee(Employee e){
         return jdbcTemplate.update(INSERT_EMPLOYEE, e.getFirstName(), e.getLastName(), e.getAddress()) > 0;
+    }
+
+    public boolean updateEmployee(Employee e) {
+        return jdbcTemplate.update(UPDATE_EMPLOYEE, e.getFirstName(), e.getLastName(), e.getAddress(), e.getId()) > 0;
     }
 }
