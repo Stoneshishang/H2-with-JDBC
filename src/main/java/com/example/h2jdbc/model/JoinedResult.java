@@ -7,14 +7,9 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-//@Entity
-//@Table(name = "employees")
-public class Employee {
-
+public class JoinedResult {
     private int id;
     private String firstName;
-    private String lastName;
+    private String superPower;
     private String address;
-    private String joiningDate;
-
 }
