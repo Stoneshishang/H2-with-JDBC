@@ -22,7 +22,7 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public List<JoinedResult> jionAll() {
+    public List<JoinedResult> joinAll() {
         return joinedTableRepository.joinTables();
     }
 
